@@ -8,4 +8,4 @@ else
 	printf 'NO ARGS'
 fi
 
-printf '\n'
+printf '\n\n'

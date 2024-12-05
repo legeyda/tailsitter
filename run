@@ -8,4 +8,6 @@ else
 	printf 'NO ARGS'
 fi
 
+printf '(TAILSITTER_RUN_ENV is <%s>)' "$TAILSITTER_RUN_ENV"
+
 printf '\n\n'

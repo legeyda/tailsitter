@@ -1,0 +1,31 @@
+#!/usr/bin/env shelduck_run
+
+
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/misc/python.sh
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/crypto.sh
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/run.sh
+
+on_start() {
+	# shellcheck disable=SC2154
+	cd "$bobshell_script_dir" || return 1
+	# shellcheck disable=SC2034
+	bobshell_app_name=tailsitter
+	# shellcheck disable=SC2034
+	bobshell_python_name=prodoctorov
+}
+
+run_install() {
+	bobshell_python -m pip install -r requirements.txt
+	run_timer
+}
+
+run_timer() {
+	for v in TELEGRAM_API_KEY TELEGRAM_CHAT_ID; do
+		bobshell_decrypt var:TAILSITTER_SECRET_PASSWORD "file:$v" "var:$v"
+		eval "export $v"
+	done
+	bobshell_python prodoctorov.py
+}
+
+
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/entry_point.sh

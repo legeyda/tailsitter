@@ -1,13 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env shelduck_run
+set -eu
 
-printf 'HELLO FROM TAILSITTER. '
-if [ -n "$*" ]; then
-	printf 'ARGS:'
-	printf ' <%s>' "$@"
-else
-	printf 'NO ARGS'
-fi
+bobshell_app_name=tailsitter
 
-printf '(TAILSITTER_SECRET_PASSWORD is <%s>)' "$TAILSITTER_SECRET_PASSWORD"
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/run.sh
 
-printf '\n\n'
+on_start() {
+	set -x
+	: "${RUNWAY_BUILD_TARGET:=./target}"
+	: "${BOBSHELL_APP_NAME:=tailsitter}"
+
+
+}
+
+run_timer() {
+	./prodoctorov/run timer
+}
+
+run_install() {
+	./prodoctorov/run install
+}
+
+
+shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/entry_point.sh

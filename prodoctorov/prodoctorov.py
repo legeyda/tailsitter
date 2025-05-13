@@ -14,6 +14,7 @@ lpu_id = 73456
 
 
 def parse_answer(answer):
+	print('answer: ' + answer)
 	for doctor in answer['result']:
 		if doctor['doctor_id'] != doctor_id:
 			continue

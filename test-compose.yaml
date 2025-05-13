@@ -1,0 +1,9 @@
+services:
+  runway:
+    image: runway
+    build: https://github.com/legeyda/runway.git
+    restart: always
+    pull_policy: never
+    environment:
+      - RUNWAY_REPO_URL=${RUNWAY_REPO_URL:-git@github.com:legeyda/tailsitter.git}
+      - RUNWAY_SSH_IDENTITY=${RUNWAY_SSH_IDENTITY?ssh identity should be set}

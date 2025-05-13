@@ -26,7 +26,7 @@ def parse_answer(answer):
 					continue
 				if not slot['free']:
 					continue
-				if slot['time'] in ('18:00', '19:00', '20:00'):
+				if slot['time'] in ('18:00', '19:00', '20:00', '21:00'):
 					yield date, slot['time']
 
 def get_slots(date):
@@ -67,8 +67,9 @@ def get_slots(date):
 		for date, time in parse_answer(json.loads(response.read().decode("utf-8"))):
 			yield date, time
 
+
 def main():
-	found=[]
+	found = []
 	cachedir = platformdirs.user_cache_dir("prodoctorov", "legeyda")
 	with diskcache.Cache(cachedir) as cache:
 		for date, time in get_slots(datetime.date.today()):
@@ -85,12 +86,9 @@ def main():
 			text = "Найден слот: " + found[0]
 		elif len(found) > 1:
 			text = "Найдены слоты: " + ', '.join(found)
-		asyncio.run(bot.send_message(text = text, chat_id=os.environ['TELEGRAM_CHAT_ID']))
+		asyncio.run(bot.send_message(text=text, chat_id=os.environ['TELEGRAM_CHAT_ID']))
 
 		
-
-
-
 
 if __name__ == "__main__":
 	main()

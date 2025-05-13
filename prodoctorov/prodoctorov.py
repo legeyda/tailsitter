@@ -14,7 +14,7 @@ lpu_id = 73456
 
 
 def parse_answer(answer):
-	print('answer: ' + answer)
+	print('answer: ' + str(answer))
 	for doctor in answer['result']:
 		if doctor['doctor_id'] != doctor_id:
 			continue
@@ -53,7 +53,7 @@ def get_slots(date):
 	}
 
 	request_body = {
-		"days": 14,
+		"days": 28,
 		"dt_start": date.strftime("%Y-%m-%d"),
 		"doctors_lpus": [{
 			"doctor_id": doctor_id,

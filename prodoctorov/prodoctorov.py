@@ -12,6 +12,7 @@ import asyncio
 doctor_id = 803551
 lpu_id = 73456
 
+
 def parse_answer(answer):
 	for doctor in answer['result']:
 		if doctor['doctor_id'] != doctor_id:
@@ -28,6 +29,8 @@ def parse_answer(answer):
 					continue
 				if slot['time'] in ('18:00', '19:00', '20:00', '21:00'):
 					yield date, slot['time']
+				else:
+					print("skip slot: " + date + ' ' + slot['time'])
 
 def get_slots(date):
 	headers = {
@@ -75,6 +78,7 @@ def main():
 		for date, time in get_slots(datetime.date.today()):
 			key = date + '_' + time
 			if key in cache:
+				print("skip key: " + key)
 				continue
 			cache[key] = True
 			print(date + ' ' + time)

@@ -1,5 +1,4 @@
 #!/usr/bin/env shelduck_run
-set -x
 
 bobshell_app_name=tailsitter
 

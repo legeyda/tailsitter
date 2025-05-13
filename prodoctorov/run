@@ -1,5 +1,4 @@
 #!/usr/bin/env shelduck_run
-set -x
 
 shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/misc/python.sh
 shelduck import https://raw.githubusercontent.com/legeyda/bobshell/refs/heads/unstable/crypto.sh
